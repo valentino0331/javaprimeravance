@@ -1,0 +1,55 @@
+/* Estilos del componente Menu */
+
+/* Navbar personalizado */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Logo/Marca con estilo */
+.navbar-brand {
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+}
+
+.navbar-brand i {
+  margin-right: 0.5rem;
+}
+
+/* Enlaces de navegación */
+.nav-link {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-link i {
+  margin-right: 0.5rem;
+}
+
+.nav-link:hover {
+  color: #fff !important;
+  transform: translateY(-2px);
+}
+
+/* Estado activo del enlace */
+.nav-link.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+  color: #fff !important;
+}
+
+/* Responsivo */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    margin-top: 1rem;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}

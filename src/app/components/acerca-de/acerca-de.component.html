@@ -1,0 +1,319 @@
+<!-- Componente Acerca de -->
+<div class="acerca-container">
+  <!-- Sección de Encabezado -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="display-4 fw-bold text-white mb-4">
+          <i class="bi bi-info-circle"></i> Acerca del Proyecto
+        </h1>
+        <p class="lead text-white-50">
+          Sistema de Rendición de Cuentas - Proyecto Académico Grupal
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Descripción -->
+  <section class="description-section">
+    <div class="container">
+      <div class="row align-items-center mb-5">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h2 class="fw-bold mb-3">Descripción del Proyecto</h2>
+          <p class="text-muted">
+            El "Sistema de Rendición de Cuentas" es una aplicación web moderna desarrollada en <strong>Angular 20</strong> 
+            diseñada para gestionar de manera eficiente los viáticos, papeletas de comisión y rendición de gastos en 
+            instituciones públicas.
+          </p>
+          <p class="text-muted">
+            Este proyecto fue desarrollado como parte de un trabajo grupal para estudiantes de Ingeniería de Sistemas, 
+            implementando conceptos modernos de desarrollo web, arquitectura de componentes y mejores prácticas en 
+            programación.
+          </p>
+          <p class="text-muted">
+            La aplicación permite un flujo completo de CRUD (Crear, Leer, Actualizar, Eliminar) para gestionar todos 
+            los datos relacionados con comisiones y gastos de los colaboradores.
+          </p>
+        </div>
+        <div class="col-lg-6">
+          <div class="feature-graphic">
+            <i class="bi bi-diagram-3"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Objetivos -->
+  <section class="objectives-section">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Objetivos del Proyecto</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="objective-box">
+            <div class="objective-icon">
+              <i class="bi bi-pencil-square"></i>
+            </div>
+            <h5 class="fw-bold">Gestión de Datos</h5>
+            <p class="text-muted">
+              Proporcionar una plataforma centralizada para registrar y gestionar viáticos y comisiones.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="objective-box">
+            <div class="objective-icon">
+              <i class="bi bi-search"></i>
+            </div>
+            <h5 class="fw-bold">Consultas Eficientes</h5>
+            <p class="text-muted">
+              Permitir búsquedas y filtros avanzados para encontrar información rápidamente.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="objective-box">
+            <div class="objective-icon">
+              <i class="bi bi-graph-up"></i>
+            </div>
+            <h5 class="fw-bold">Transparencia</h5>
+            <p class="text-muted">
+              Mantener un registro claro y auditable de todos los gastos y comisiones.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="objective-box">
+            <div class="objective-icon">
+              <i class="bi bi-mortarboard"></i>
+            </div>
+            <h5 class="fw-bold">Aprendizaje</h5>
+            <p class="text-muted">
+              Demostrar competencias en desarrollo web moderno con Angular y tecnologías asociadas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Integrantes -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Integrantes del Equipo</h2>
+      <div class="row g-4">
+        <div *ngFor="let integrante of integrantes" class="col-md-6 col-lg-4">
+          <div class="team-card">
+            <div class="team-avatar">
+              <i class="bi bi-person-circle"></i>
+            </div>
+            <h5 class="fw-bold mt-3">Persona {{ integrante.numero }}</h5>
+            <p class="text-muted small mb-2">
+              <strong>Especialidad:</strong> {{ integrante.especialidad }}
+            </p>
+            <p class="text-muted small">
+              <strong>Carrera:</strong> {{ integrante.carrera }}
+            </p>
+            <div class="team-footer">
+              <span class="badge bg-primary">
+                <i class="bi bi-id-card"></i> {{ integrante.dni }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- División de Tareas para Exposición -->
+  <section class="division-section">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">División de Tareas para Exposición</h2>
+
+      <div class="accordion" id="accordionExposicion">
+        <!-- Persona 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+              <i class="bi bi-person-badge"></i> Persona 1: Introducción y Arquitectura
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExposicion">
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li><i class="bi bi-check-lg text-success"></i> Introducción al proyecto</li>
+                <li><i class="bi bi-check-lg text-success"></i> Objetivo del sistema</li>
+                <li><i class="bi bi-check-lg text-success"></i> Arquitectura Angular 20</li>
+                <li><i class="bi bi-check-lg text-success"></i> Explicación de componentes standalone</li>
+                <li><i class="bi bi-check-lg text-success"></i> Integración con JSON Server</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo">
+              <i class="bi bi-person-badge"></i> Persona 2: Navegación y Routing
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExposicion">
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li><i class="bi bi-check-lg text-success"></i> Sistema de routing</li>
+                <li><i class="bi bi-check-lg text-success"></i> Configuración de rutas</li>
+                <li><i class="bi bi-check-lg text-success"></i> Navbar responsivo</li>
+                <li><i class="bi bi-check-lg text-success"></i> Bootstrap integration</li>
+                <li><i class="bi bi-check-lg text-success"></i> Directivas Angular (*ngIf, *ngFor)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseThree">
+              <i class="bi bi-person-badge"></i> Persona 3: Formularios y Validaciones
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExposicion">
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li><i class="bi bi-check-lg text-success"></i> FormsModule</li>
+                <li><i class="bi bi-check-lg text-success"></i> ngModel y data binding</li>
+                <li><i class="bi bi-check-lg text-success"></i> Validaciones de formularios</li>
+                <li><i class="bi bi-check-lg text-success"></i> Pipes (uppercase, currency, date, titlecase)</li>
+                <li><i class="bi bi-check-lg text-success"></i> Mensajes de error y alertas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 4 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseFour">
+              <i class="bi bi-person-badge"></i> Persona 4: Servicios y APIs REST
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExposicion">
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li><i class="bi bi-check-lg text-success"></i> HttpClient y peticiones REST</li>
+                <li><i class="bi bi-check-lg text-success"></i> JSON Server como base de datos falsa</li>
+                <li><i class="bi bi-check-lg text-success"></i> CRUD completo (GET, POST, PUT, DELETE)</li>
+                <li><i class="bi bi-check-lg text-success"></i> Servicios Angular</li>
+                <li><i class="bi bi-check-lg text-success"></i> Manejo de errores</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 5 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button fw-bold collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseFive">
+              <i class="bi bi-person-badge"></i> Persona 5: Consultas y Demostración Final
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExposicion">
+            <div class="accordion-body">
+              <ul class="list-unstyled">
+                <li><i class="bi bi-check-lg text-success"></i> Búsquedas y filtros</li>
+                <li><i class="bi bi-check-lg text-success"></i> Operadores RxJS (filter, map, find)</li>
+                <li><i class="bi bi-check-lg text-success"></i> Exportación a CSV</li>
+                <li><i class="bi bi-check-lg text-success"></i> Demostración completa del sistema</li>
+                <li><i class="bi bi-check-lg text-success"></i> Conclusiones y aprendizajes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Tecnologías -->
+  <section class="technologies-section">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Tecnologías Utilizadas</h2>
+      <div class="row g-4">
+        <div *ngFor="let tech of tecnologias" class="col-md-6 col-lg-4">
+          <div class="tech-card">
+            <div class="tech-icon">
+              <i [ngClass]="'bi-' + tech.icono"></i>
+            </div>
+            <h5 class="fw-bold mt-3">{{ tech.nombre }}</h5>
+            <p class="text-muted small mb-2">{{ tech.descripcion }}</p>
+            <span class="badge bg-primary">v{{ tech.version }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Características -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Características Principales</h2>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <ul class="features-list">
+            <li *ngFor="let caracteristica of caracteristicas">
+              <i class="bi bi-check-circle text-success"></i> {{ caracteristica }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Instrucciones -->
+  <section class="instructions-section">
+    <div class="container">
+      <h2 class="text-center fw-bold mb-5">Cómo Ejecutar el Proyecto</h2>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="instructions-card">
+            <h5 class="fw-bold mb-3">
+              <i class="bi bi-terminal"></i> Pasos de Instalación:
+            </h5>
+            <pre><code>npm install
+npm install bootstrap
+npm install bootstrap-icons
+npm install json-server
+</code></pre>
+
+            <h5 class="fw-bold mb-3 mt-4">
+              <i class="bi bi-play-circle"></i> Ejecutar la Aplicación:
+            </h5>
+            <p>Abre dos terminales:</p>
+
+            <p class="mt-3"><strong>Terminal 1 - JSON Server:</strong></p>
+            <pre><code>npm run json-server</code></pre>
+
+            <p class="mt-3"><strong>Terminal 2 - Angular App:</strong></p>
+            <pre><code>ng serve --open</code></pre>
+
+            <p class="mt-3 text-muted">
+              <i class="bi bi-info-circle"></i> La aplicación se abrirá en http://localhost:4200
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de página -->
+  <footer class="footer-section">
+    <div class="container text-center">
+      <p class="mb-2">Sistema de Rendición de Cuentas © 2024</p>
+      <p class="text-muted small">Proyecto Académico - Ingeniería de Sistemas</p>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,101 @@
+<!-- Navbar responsivo con Bootstrap -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
+    <!-- Logo/Marca -->
+    <a class="navbar-brand fw-bold" routerLink="/">
+      <i class="bi bi-graph-up"></i> Sistema de Rendición
+    </a>
+
+    <!-- Botón toggle para móviles -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuAbierto"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú de navegación -->
+    <div
+      class="collapse navbar-collapse"
+      [ngClass]="{ show: menuAbierto }"
+      id="navbarNav"
+    >
+      <ul class="navbar-nav ms-auto">
+        <!-- Enlace a Inicio -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="cerrarMenu()"
+          >
+            <i class="bi bi-house-door"></i> Inicio
+          </a>
+        </li>
+
+        <!-- Enlace a Planilla de Viáticos -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/planilla"
+            routerLinkActive="active"
+            (click)="cerrarMenu()"
+          >
+            <i class="bi bi-receipt"></i> Planilla
+          </a>
+        </li>
+
+        <!-- Enlace a Papeleta de Comisión -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/papeleta"
+            routerLinkActive="active"
+            (click)="cerrarMenu()"
+          >
+            <i class="bi bi-file-text"></i> Papeleta
+          </a>
+        </li>
+
+        <!-- Enlace a Rendición de Cuentas -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/rendicion"
+            routerLinkActive="active"
+            (click)="cerrarMenu()"
+          >
+            <i class="bi bi-calculator"></i> Rendición
+          </a>
+        </li>
+
+        <!-- Enlace a Consulta de Rendiciones -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/consulta"
+            routerLinkActive="active"
+            (click)="cerrarMenu()"
+          >
+            <i class="bi bi-search"></i> Consulta
+          </a>
+        </li>
+
+        <!-- Enlace a Acerca de -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="/acerca"
+            routerLinkActive="active"
+            (click)="cerrarMenu()"
+          >
+            <i class="bi bi-info-circle"></i> Acerca de
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

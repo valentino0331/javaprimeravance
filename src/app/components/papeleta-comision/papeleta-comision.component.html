@@ -1,0 +1,214 @@
+<!-- Componente Papeleta de Comisión -->
+<div class="papeleta-container">
+  <div class="container">
+    <!-- Encabezado -->
+    <div class="header-section mb-5">
+      <h1 class="display-5 fw-bold text-success mb-2">
+        <i class="bi bi-file-text"></i> Papeleta de Comisión
+      </h1>
+      <p class="text-muted">Gestiona las papeletas de comisión para desplazamientos oficiales.</p>
+    </div>
+
+    <!-- Mensaje de éxito -->
+    <div *ngIf="mensajeExito" class="alert alert-success alert-dismissible fade show mb-4">
+      <i class="bi bi-check-circle"></i> {{ mensajeExito }}
+      <button type="button" class="btn-close" (click)="mensajeExito = ''"></button>
+    </div>
+
+    <div class="row">
+      <!-- Formulario -->
+      <div class="col-lg-5 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white">
+            <h5 class="mb-0">
+              <i class="bi bi-pencil-square"></i>
+              {{ editando ? 'Editar Papeleta' : 'Nueva Papeleta' }}
+            </h5>
+          </div>
+
+          <form (ngSubmit)="guardarComision()" class="p-4">
+            <!-- DNI -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">DNI <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="comision.dni"
+                name="dni"
+                placeholder="12345678"
+                [class.is-invalid]="errores['dni']"
+              />
+              <div *ngIf="errores['dni']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['dni'] }}
+              </div>
+            </div>
+
+            <!-- Especialidad -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Especialidad <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="comision.especialidad"
+                name="especialidad"
+                placeholder="Ej: Ingeniero"
+                [class.is-invalid]="errores['especialidad']"
+              />
+              <div *ngIf="errores['especialidad']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['especialidad'] }}
+              </div>
+            </div>
+
+            <!-- Nombres -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Nombres Completos <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="comision.nombres"
+                name="nombres"
+                placeholder="Juan Pérez García"
+                [class.is-invalid]="errores['nombres']"
+              />
+              <div *ngIf="errores['nombres']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['nombres'] }}
+              </div>
+            </div>
+
+            <!-- Lugar -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Lugar de Comisión <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="comision.lugar"
+                name="lugar"
+                placeholder="Ej: Lima, Cusco"
+                [class.is-invalid]="errores['lugar']"
+              />
+              <div *ngIf="errores['lugar']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['lugar'] }}
+              </div>
+            </div>
+
+            <!-- Motivo -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Motivo de la Comisión</label>
+              <textarea
+                class="form-control"
+                [(ngModel)]="comision.motivo"
+                name="motivo"
+                placeholder="Describe el motivo de la comisión"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <!-- Fecha de Inicio -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Fecha de Inicio <span class="text-danger">*</span></label>
+              <input
+                type="date"
+                class="form-control"
+                [(ngModel)]="comision.fechaInicio"
+                name="fechaInicio"
+                [class.is-invalid]="errores['fechaInicio'] || errores['fechas']"
+              />
+              <div *ngIf="errores['fechaInicio'] || errores['fechas']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i>
+                {{ errores['fechaInicio'] || errores['fechas'] }}
+              </div>
+            </div>
+
+            <!-- Fecha de Término -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Fecha de Término <span class="text-danger">*</span></label>
+              <input
+                type="date"
+                class="form-control"
+                [(ngModel)]="comision.fechaTermino"
+                name="fechaTermino"
+                [class.is-invalid]="errores['fechaTermino']"
+              />
+              <div *ngIf="errores['fechaTermino']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['fechaTermino'] }}
+              </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-success btn-lg">
+                <i class="bi bi-save"></i> {{ editando ? 'Actualizar' : 'Guardar' }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="limpiarFormulario()"
+                *ngIf="editando || comision.dni !== ''"
+              >
+                <i class="bi bi-x-circle"></i> Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tabla de Papeletas -->
+      <div class="col-lg-7">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white">
+            <h5 class="mb-0">
+              <i class="bi bi-table"></i> Papeletas Registradas ({{ comisiones.length }})
+            </h5>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>DNI</th>
+                  <th>Nombre</th>
+                  <th>Lugar</th>
+                  <th>Días</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of comisiones">
+                  <td><strong>{{ c.dni }}</strong></td>
+                  <td>{{ c.nombres | titlecase }}</td>
+                  <td>{{ c.lugar | titlecase }}</td>
+                  <td class="text-center">
+                    <span class="badge bg-info">
+                      {{ calcularDias(c) }} días
+                    </span>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-warning"
+                      (click)="editarComision(c)"
+                      title="Editar"
+                    >
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button
+                      class="btn btn-sm btn-danger ms-1"
+                      (click)="eliminarComision(c.id)"
+                      title="Eliminar"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="comisiones.length === 0">
+                  <td colspan="5" class="text-center text-muted py-4">
+                    <i class="bi bi-inbox"></i> No hay papeletas registradas
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+{
+  "colaboradores": [
+    {
+      "id": 1,
+      "dni": "12345678",
+      "nombres": "Juan Pérez García",
+      "especialidad": "Ingeniero de Sistemas",
+      "area": "Sistemas"
+    },
+    {
+      "id": 2,
+      "dni": "87654321",
+      "nombres": "María López Rodríguez",
+      "especialidad": "Contador",
+      "area": "Contabilidad"
+    },
+    {
+      "id": 3,
+      "dni": "11223344",
+      "nombres": "Carlos Martínez Silva",
+      "especialidad": "Abogado",
+      "area": "Asesoría Legal"
+    }
+  ],
+  "viaticos": [],
+  "comisiones": [
+    {
+      "id": 1,
+      "dni": "12345678",
+      "especialidad": "Ingeniero de Sistemas",
+      "nombres": "Juan Pérez García",
+      "lugar": "Lima",
+      "fechaInicio": "2024-01-10",
+      "fechaTermino": "2024-01-12",
+      "motivo": "Participación en conferencia de tecnología",
+      "fechaRegistro": "2024-01-09"
+    },
+    {
+      "id": 2,
+      "dni": "87654321",
+      "especialidad": "Contador",
+      "nombres": "María López Rodríguez",
+      "lugar": "Arequipa",
+      "fechaInicio": "2024-01-18",
+      "fechaTermino": "2024-01-22",
+      "motivo": "Revisión de sucursal regional",
+      "fechaRegistro": "2024-01-17"
+    }
+  ],
+  "rendiciones": [
+    {
+      "id": 1,
+      "numeroSiaf": "SIAF-2024-001",
+      "dependencia": "Dirección de Sistemas",
+      "dni": "12345678",
+      "especialidad": "Ingeniero de Sistemas",
+      "nombres": "Juan Pérez García",
+      "motivo": "Viaje a conferencia de tecnología",
+      "lugarComision": "Lima",
+      "clasificador": "3.1.1",
+      "boletas": [
+        {
+          "id": 1,
+          "numero": "000123",
+          "monto": 150,
+          "fecha": "2024-01-10",
+          "razonSocial": "Hotel Paradise",
+          "descripcion": "Hospedaje"
+        },
+        {
+          "id": 2,
+          "numero": "000124",
+          "monto": 80,
+          "fecha": "2024-01-10",
+          "razonSocial": "Restaurant La Montaña",
+          "descripcion": "Alimentación"
+        }
+      ],
+      "totalGastos": 230,
+      "estado": "aprobada",
+      "fechaRegistro": "2024-01-15"
+    },
+    {
+      "id": 2,
+      "numeroSiaf": "SIAF-2024-002",
+      "dependencia": "Contabilidad",
+      "dni": "87654321",
+      "especialidad": "Contador",
+      "nombres": "María López Rodríguez",
+      "motivo": "Auditoría de cuentas anuales",
+      "lugarComision": "Arequipa",
+      "clasificador": "3.1.2",
+      "boletas": [
+        {
+          "id": 3,
+          "numero": "000200",
+          "monto": 200,
+          "fecha": "2024-01-18",
+          "razonSocial": "Hotel Arequipa Inn",
+          "descripcion": "Hospedaje 5 noches"
+        },
+        {
+          "id": 4,
+          "numero": "000201",
+          "monto": 120,
+          "fecha": "2024-01-19",
+          "razonSocial": "Restaurant El Volcán",
+          "descripcion": "Alimentación"
+        },
+        {
+          "id": 5,
+          "numero": "000202",
+          "monto": 50,
+          "fecha": "2024-01-20",
+          "razonSocial": "Transporte Arequipa",
+          "descripcion": "Taxi y transporte local"
+        }
+      ],
+      "totalGastos": 370,
+      "estado": "pendiente",
+      "fechaRegistro": "2024-01-22"
+    }
+  ],
+  "boletas": [
+    {
+      "id": 1,
+      "numero": "000123",
+      "monto": 150,
+      "fecha": "2024-01-10",
+      "razonSocial": "Hotel Paradise",
+      "descripcion": "Hospedaje"
+    },
+    {
+      "id": 2,
+      "numero": "000124",
+      "monto": 80,
+      "fecha": "2024-01-10",
+      "razonSocial": "Restaurant La Montaña",
+      "descripcion": "Alimentación"
+    }
+  ]
+}

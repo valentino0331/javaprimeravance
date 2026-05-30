@@ -1,0 +1,12 @@
+/* app.component.css - Estilos del componente raíz */
+
+.main-content {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Asegurar que el contenido se expanda */
+main {
+  flex: 1;
+}

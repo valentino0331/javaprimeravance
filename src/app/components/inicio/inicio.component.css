@@ -1,0 +1,217 @@
+/* Estilos de la página Inicio */
+
+.inicio-container {
+  min-height: 100vh;
+}
+
+/* Sección Hero */
+.hero-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  margin-bottom: 80px;
+}
+
+.hero-section h1 {
+  color: white;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero-section .lead {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero-icon {
+  font-size: 150px;
+  color: rgba(255, 255, 255, 0.3);
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Sección de Módulos */
+.modulos-section {
+  padding: 60px 0;
+  background-color: #f8f9fa;
+}
+
+.card-modulo {
+  border: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card-modulo:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.card-icon {
+  font-size: 3rem;
+  color: white;
+}
+
+.card-title {
+  color: #333;
+  margin-top: 1rem;
+}
+
+.card-text {
+  font-size: 0.95rem;
+}
+
+/* Sección de Características */
+.caracteristicas-section {
+  padding: 80px 0;
+  background-color: white;
+}
+
+.feature-box {
+  padding: 30px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.feature-box:hover {
+  background-color: #e9ecef;
+  transform: translateY(-5px);
+}
+
+.feature-box i {
+  font-size: 3rem;
+  color: #667eea;
+}
+
+.feature-box h5 {
+  font-weight: 600;
+  color: #333;
+}
+
+.feature-box p {
+  font-size: 0.95rem;
+}
+
+/* Sección de Información */
+.info-section {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+.info-section h2 {
+  font-weight: 700;
+  color: #333;
+}
+
+.step {
+  display: flex;
+  margin-bottom: 2rem;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.step-number {
+  width: 60px;
+  height: 60px;
+  background-color: #667eea;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+
+.step-content h5 {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.step-content p {
+  color: #666;
+  margin-bottom: 0;
+}
+
+.info-graphic {
+  font-size: 150px;
+  color: #667eea;
+  opacity: 0.2;
+}
+
+/* Botones personalizados */
+.btn-primary {
+  background-color: #667eea;
+  border-color: #667eea;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #764ba2;
+  border-color: #764ba2;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-outline-primary {
+  color: #667eea;
+  border-color: #667eea;
+}
+
+.btn-outline-primary:hover {
+  background-color: #667eea;
+  border-color: #667eea;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 60px 0;
+  }
+
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-icon {
+    font-size: 100px;
+    margin-top: 2rem;
+  }
+
+  .caracteristicas-section,
+  .info-section,
+  .modulos-section {
+    padding: 60px 0;
+  }
+
+  .feature-box {
+    padding: 20px;
+  }
+
+  .feature-box i {
+    font-size: 2rem;
+  }
+}

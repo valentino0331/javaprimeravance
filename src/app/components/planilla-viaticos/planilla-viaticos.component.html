@@ -1,0 +1,252 @@
+<!-- Componente Planilla de Viáticos -->
+<div class="planilla-container">
+  <div class="container">
+    <!-- Encabezado -->
+    <div class="header-section mb-5">
+      <h1 class="display-5 fw-bold text-primary mb-2">
+        <i class="bi bi-receipt"></i> Planilla de Viáticos
+      </h1>
+      <p class="text-muted">Registra y gestiona los gastos de desplazamiento de los colaboradores.</p>
+    </div>
+
+    <!-- Mensaje de éxito -->
+    <div *ngIf="mensajeExito" class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+      <i class="bi bi-check-circle"></i> {{ mensajeExito }}
+      <button type="button" class="btn-close" (click)="mensajeExito = ''"></button>
+    </div>
+
+    <div class="row">
+      <!-- Formulario -->
+      <div class="col-lg-5 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">
+              <i class="bi bi-pencil-square"></i>
+              {{ editando ? 'Editar Viático' : 'Nuevo Viático' }}
+            </h5>
+          </div>
+
+          <form (ngSubmit)="guardarViatico()" class="p-4">
+            <!-- DNI -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">DNI <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="viatico.dni"
+                name="dni"
+                placeholder="Ej: 12345678"
+                [class.is-invalid]="errores['dni']"
+              />
+              <div *ngIf="errores['dni']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['dni'] }}
+              </div>
+            </div>
+
+            <!-- Especialidad -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Especialidad <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="viatico.especialidad"
+                name="especialidad"
+                placeholder="Ej: Ingeniero, Contador"
+                [class.is-invalid]="errores['especialidad']"
+              />
+              <div *ngIf="errores['especialidad']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['especialidad'] }}
+              </div>
+            </div>
+
+            <!-- Nombres -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Nombres Completos <span class="text-danger">*</span></label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="viatico.nombres"
+                name="nombres"
+                placeholder="Ej: Juan Pérez García"
+                [class.is-invalid]="errores['nombres']"
+              />
+              <div *ngIf="errores['nombres']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['nombres'] }}
+              </div>
+            </div>
+
+            <!-- Motivo de Comisión -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Motivo de Comisión <span class="text-danger">*</span></label>
+              <textarea
+                class="form-control"
+                [(ngModel)]="viatico.motivoComision"
+                name="motivo"
+                placeholder="Describe el motivo del viaje"
+                rows="3"
+                [class.is-invalid]="errores['motivo']"
+              ></textarea>
+              <div *ngIf="errores['motivo']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['motivo'] }}
+              </div>
+            </div>
+
+            <!-- Número de Días -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Número de Días <span class="text-danger">*</span></label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="viatico.numeroDias"
+                name="numeroDias"
+                min="1"
+                placeholder="Ej: 3"
+                (change)="calcularImporte()"
+                [class.is-invalid]="errores['dias']"
+              />
+              <div *ngIf="errores['dias']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['dias'] }}
+              </div>
+            </div>
+
+            <!-- Monto por Día -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Monto por Día (S/.) <span class="text-danger">*</span></label>
+              <input
+                type="number"
+                class="form-control"
+                [(ngModel)]="viatico.montoPorDia"
+                name="montoPorDia"
+                min="0"
+                step="0.01"
+                placeholder="Ej: 100.00"
+                (change)="calcularImporte()"
+                [class.is-invalid]="errores['monto']"
+              />
+              <div *ngIf="errores['monto']" class="invalid-feedback d-block">
+                <i class="bi bi-exclamation-circle"></i> {{ errores['monto'] }}
+              </div>
+            </div>
+
+            <!-- Importe Total (Calculado) -->
+            <div class="mb-3">
+              <label class="form-label fw-bold">Importe Total (S/.)</label>
+              <div class="input-group">
+                <span class="input-group-text">S/.</span>
+                <input
+                  type="number"
+                  class="form-control"
+                  [ngModel]="viatico.importe"
+                  disabled
+                  placeholder="Calculado automáticamente"
+                />
+              </div>
+              <small class="text-muted">Se calcula: Días × Monto por Día</small>
+            </div>
+
+            <!-- Firma -->
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [(ngModel)]="viatico.firma"
+                name="firma"
+                id="firma"
+              />
+              <label class="form-check-label" for="firma">
+                <i class="bi bi-pen"></i> Firmado
+              </label>
+            </div>
+
+            <!-- Huella Digital -->
+            <div class="mb-3 form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                [(ngModel)]="viatico.huella"
+                name="huella"
+                id="huella"
+              />
+              <label class="form-check-label" for="huella">
+                <i class="bi bi-fingerprint"></i> Huella Digital
+              </label>
+            </div>
+
+            <!-- Botones -->
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-lg">
+                <i class="bi bi-save"></i> {{ editando ? 'Actualizar' : 'Guardar' }}
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="limpiarFormulario()"
+                *ngIf="editando || viatico.dni !== ''"
+              >
+                <i class="bi bi-x-circle"></i> Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tabla de Viáticos -->
+      <div class="col-lg-7">
+        <div class="card shadow-sm">
+          <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">
+              <i class="bi bi-table"></i> Viáticos Registrados ({{ viaticos.length }})
+            </h5>
+            <button class="btn btn-sm btn-light" (click)="exportarCSV()" *ngIf="viaticos.length > 0">
+              <i class="bi bi-download"></i> CSV
+            </button>
+          </div>
+
+          <!-- Tabla responsiva -->
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>DNI</th>
+                  <th>Nombre</th>
+                  <th>Días</th>
+                  <th>Importe</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let v of viaticos; let i = index">
+                  <td><strong>{{ v.dni }}</strong></td>
+                  <td>{{ v.nombres | titlecase }}</td>
+                  <td class="text-center"><span class="badge bg-info">{{ v.numeroDias }}</span></td>
+                  <td class="text-success fw-bold">{{ v.importe | currency: 'PEN' }}</td>
+                  <td>
+                    <button
+                      class="btn btn-sm btn-warning"
+                      (click)="editarViatico(v)"
+                      title="Editar"
+                    >
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button
+                      class="btn btn-sm btn-danger ms-1"
+                      (click)="eliminarViatico(v.id)"
+                      title="Eliminar"
+                    >
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="viaticos.length === 0">
+                  <td colspan="5" class="text-center text-muted py-4">
+                    <i class="bi bi-inbox"></i> No hay viáticos registrados
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
