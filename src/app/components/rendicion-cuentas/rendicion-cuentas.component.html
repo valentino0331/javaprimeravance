@@ -69,10 +69,15 @@
                 name="dni"
                 placeholder="12345678"
                 [class.is-invalid]="errores['dni']"
+                (change)="buscarColaboradorPorDni()"
+                maxlength="8"
               />
               <div *ngIf="errores['dni']" class="invalid-feedback d-block">
                 <i class="bi bi-exclamation-circle"></i> {{ errores['dni'] }}
               </div>
+              <small class="text-muted" *ngIf="rendicion.dni.length === 8 && rendicion.nombres">
+                <i class="bi bi-check-circle text-success"></i> Datos autocompletados
+              </small>
             </div>
 
             <!-- Especialidad -->

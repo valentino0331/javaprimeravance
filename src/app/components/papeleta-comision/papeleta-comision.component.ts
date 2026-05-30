@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ComisionesService } from '../../services/comisiones.service';
+import { ColaboradorService } from '../../services/colaborador.service';
 import { Comision } from '../../interfaces/comision.interface';
 
 @Component({
@@ -35,10 +36,33 @@ export class PapeletaComisionComponent implements OnInit {
   // Errores de validación
   errores: { [key: string]: string } = {};
 
-  constructor(private comisionesService: ComisionesService) { }
+  constructor(
+    private comisionesService: ComisionesService,
+    private colaboradorService: ColaboradorService
+  ) { }
 
   ngOnInit(): void {
     this.cargarComisiones();
+  }
+
+  /**
+   * Busca colaborador por DNI y autocompleta los campos
+   */
+  buscarColaboradorPorDni(): void {
+    if (this.comision.dni.length === 8) {
+      this.colaboradorService.obtenerPorDni(this.comision.dni).subscribe({
+        next: (colaboradores) => {
+          if (colaboradores.length > 0) {
+            const colaborador = colaboradores[0];
+            this.comision.nombres = colaborador.nombres;
+            this.comision.especialidad = colaborador.especialidad;
+          }
+        },
+        error: (error) => {
+          console.error('Error al buscar colaborador:', error);
+        }
+      });
+    }
   }
 
   /**

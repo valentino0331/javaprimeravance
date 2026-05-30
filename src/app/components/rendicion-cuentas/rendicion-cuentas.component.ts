@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RendicionesService } from '../../services/rendiciones.service';
+import { ColaboradorService } from '../../services/colaborador.service';
 import { Rendicion } from '../../interfaces/rendicion.interface';
 import { Boleta } from '../../interfaces/boleta.interface';
 
@@ -51,10 +52,33 @@ export class RendicionCuentasComponent implements OnInit {
   errores: { [key: string]: string } = {};
   erroresBoleta: { [key: string]: string } = {};
 
-  constructor(private rendicionesService: RendicionesService) { }
+  constructor(
+    private rendicionesService: RendicionesService,
+    private colaboradorService: ColaboradorService
+  ) { }
 
   ngOnInit(): void {
     this.cargarRendiciones();
+  }
+
+  /**
+   * Busca colaborador por DNI y autocompleta los campos
+   */
+  buscarColaboradorPorDni(): void {
+    if (this.rendicion.dni.length === 8) {
+      this.colaboradorService.obtenerPorDni(this.rendicion.dni).subscribe({
+        next: (colaboradores) => {
+          if (colaboradores.length > 0) {
+            const colaborador = colaboradores[0];
+            this.rendicion.nombres = colaborador.nombres;
+            this.rendicion.especialidad = colaborador.especialidad;
+          }
+        },
+        error: (error) => {
+          console.error('Error al buscar colaborador:', error);
+        }
+      });
+    }
   }
 
   /**

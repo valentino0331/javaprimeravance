@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ViaticosService } from '../../services/viaticos.service';
+import { ColaboradorService } from '../../services/colaborador.service';
 import { Viatico } from '../../interfaces/viatico.interface';
+import { Colaborador } from '../../interfaces/colaborador.interface';
 
 @Component({
   selector: 'app-planilla-viaticos',
@@ -38,10 +40,33 @@ export class PlanillaViaticosComponent implements OnInit {
   // Errores de validación
   errores: { [key: string]: string } = {};
 
-  constructor(private viaticosService: ViaticosService) { }
+  constructor(
+    private viaticosService: ViaticosService,
+    private colaboradorService: ColaboradorService
+  ) { }
 
   ngOnInit(): void {
     this.cargarViaticos();
+  }
+
+  /**
+   * Busca colaborador por DNI y autocompleta los campos
+   */
+  buscarColaboradorPorDni(): void {
+    if (this.viatico.dni.length === 8) {
+      this.colaboradorService.obtenerPorDni(this.viatico.dni).subscribe({
+        next: (colaboradores) => {
+          if (colaboradores.length > 0) {
+            const colaborador = colaboradores[0];
+            this.viatico.nombres = colaborador.nombres;
+            this.viatico.especialidad = colaborador.especialidad;
+          }
+        },
+        error: (error) => {
+          console.error('Error al buscar colaborador:', error);
+        }
+      });
+    }
   }
 
   /**
